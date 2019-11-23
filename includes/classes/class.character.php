@@ -35,10 +35,7 @@ class character{
         $faction = $_POST["faction"];
         $bastion_clearance = $_POST["bastion_clearance"];
         $rank = $_POST["rank"];
-	$card_id = null;
-        if(isset($_POST["card_id"])){
 	$card_id = $_POST["card_id"];
-	}
 	$bank = 0;
         if(isset($_POST["bank"])){
             $bank = $_POST["bank"];

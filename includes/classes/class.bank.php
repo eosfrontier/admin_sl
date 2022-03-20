@@ -9,20 +9,17 @@ class bank{
         return $res;
     }
 
-    public function transfer($post){
+	public function transfer($post){
         $amount         = $post["amount"];
-        $negamount      = "-".$post["amount"];
         $from           = $post["from"];
-        $to             = $post["recepient"];
+        $recipient      = $post["recepient"];
         $description    = $post["description"];
 
-        $sql = "INSERT INTO bank_logging (character_id, id_to, amount, description) values (?, ?, ?, ?)";
-        $stmt = db::$conn->prepare($sql);
-        $result = $stmt->execute([$from, $to, $negamount, $description]);
-
-        $sql = "INSERT INTO bank_logging (character_id, id_to, amount, description) values (?, ?, ?, ?)";
-        $stmt = db::$conn->prepare($sql);
-        $result = $stmt->execute([$to, $from, $amount, $description]);
+		$stmt   = db::$conn->prepare(
+			'INSERT INTO
+			bank_logging (character_id, id_to, amount, description) values (?, ?, ?, ?)'
+		);
+		$result = $stmt->execute( [ $from, $recipient, $amount, $description ] );
 
         return "success";
     }

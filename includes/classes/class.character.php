@@ -2,7 +2,7 @@
 
 class character{
     public function getAll(){
-        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 0 ORDER BY character_name ASC");
+        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 0 AND sheet_status != 'deleted' ORDER BY character_name ASC");
 		$res = $stmt->execute();
 		$res = $stmt->fetchAll();
 
@@ -10,7 +10,7 @@ class character{
     }
 
     public function getAllCompanies(){
-        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 1 ORDER BY character_name ASC");
+        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 1 AND sheet_status != 'deleted' ORDER BY character_name ASC");
 		$res = $stmt->execute();
 		$res = $stmt->fetchAll();
 
@@ -18,7 +18,7 @@ class character{
     }
 
     public function getById($post){
-        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE characterID = ?");
+        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE characterID = ? AND sheet_status != 'deleted'");
 		$res = $stmt->execute(array($post));
 		$res = $stmt->fetch();
 

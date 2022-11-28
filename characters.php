@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Douane admin</title>
+    <title>Douane Characters Admin - Overview</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 

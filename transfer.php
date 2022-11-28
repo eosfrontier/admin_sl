@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Douane admin</title>
+    <title>Transfer Sonuren</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

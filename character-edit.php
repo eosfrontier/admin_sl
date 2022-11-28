@@ -48,7 +48,7 @@
                 <strong>Rank:</strong><br />
                 <input name="rank" type="text" value="<?php echo $aDouane["rank"] ?>" /><br /><br />
                 <strong>Card:</strong><br />
-                <input name="card_id" type="text" value="<?php echo $aDouane["card_id"] ?>"  required /><br /><br />
+                <input name="card_id" type="text" value="<?php echo $aDouane["card_id"] ?>"  /><br /><br />
                 <strong>Note:</strong><br />
                 <textarea rows="10" cols="50" name="douane_notes"><?php echo $aDouane["douane_notes"] ?></textarea><br /><br /><br /><br />
                 <strong>Bank</strong><br />

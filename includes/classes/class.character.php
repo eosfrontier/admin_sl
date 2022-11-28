@@ -36,14 +36,14 @@ class character{
         $born_faction = $_POST["born_faction"];
         $bastion_clearance = $_POST["bastion_clearance"];
         $rank = $_POST["rank"];
-	$card_id = $_POST["card_id"];
-	$bank = 0;
+	    $card_id = $_POST["card_id"];
+	    $bank = 0;
         if(isset($_POST["bank"])){
             $bank = $_POST["bank"];
         }
         $sonuren_offset = $_POST["sonuren_offset"];
 
-        $sql = "update ecc_characters SET character_name=?, douane_disposition=?, douane_notes=?, threat_assessment=?, faction=?, born_faction=NULLIF(?,''), bastion_clearance=?, rank=?, card_id=?, bank=?, sonuren_offset=? WHERE characterID=?";
+        $sql = "update ecc_characters SET character_name=?, douane_disposition=?, douane_notes=?, threat_assessment=?, faction=?, born_faction=NULLIF(?,''), bastion_clearance=?, rank=?, card_id=NULLIF(?,''), bank=?, sonuren_offset=? WHERE characterID=?";
         $stmt = db::$conn->prepare($sql);
         $result = $stmt->execute([$character_name, $douane_disposition, $douane_notes, $threat_assessment, $faction, $born_faction, $bastion_clearance, $rank, $card_id, $bank, $sonuren_offset, $characterID]);
 

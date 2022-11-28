@@ -63,6 +63,15 @@
                     <input id="douane-item-faction-sona" type="radio" name="faction" value="sona" <?php if($aDouane["faction"] == "sona"){ echo "checked='checked'"; } ?> /> <label for="douane-item-faction-sona">Sona</label>
                 </div>
                 <div class="douane-column">
+                    <strong>Originele Factie<font style="color:purple">*</font>:</strong><br />
+                    <input id="douane-item-born-faction-aquila" type="radio" name="born_faction" value="" <?php if($aDouane["born_faction"] == ""){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-aquila">Not Set</label><br />
+                    <input id="douane-item-born-faction-aquila" type="radio" name="born_faction" value="aquila" <?php if($aDouane["born_faction"] == "aquila"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-aquila">Aquila</label><br />
+                    <input id="douane-item-born-faction-dugo" type="radio" name="born_faction" value="dugo" <?php if($aDouane["born_faction"] == "dugo"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-dugo">Dugo</label><br />
+                    <input id="douane-item-born-faction-ekanesh" type="radio" name="born_faction" value="ekanesh" <?php if($aDouane["born_faction"] == "ekanesh"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-ekanesh">Ekanesh</label><br />
+                    <input id="douane-item-born-faction-pendzal" type="radio" name="born_faction" value="pendzal" <?php if($aDouane["born_faction"] == "pendzal"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-pendzal">Pendzal</label><br />
+                    <input id="douane-item-born-faction-sona" type="radio" name="born_faction" value="sona" <?php if($aDouane["born_faction"] == "sona"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-sona">Sona</label>
+                </div>
+                <div class="douane-column">
                     <strong>Disposition:</strong><br />
                     <input id="douane-item-disposition-0" type="radio" name="douane_disposition" value="ACCESS PENDING" <?php if($aDouane["douane_disposition"] == "ACCESS PENDING"){ echo "checked='checked'"; } ?> /> <label for="douane-item-disposition-0">Access pending</label><br />
                     <input id="douane-item-disposition-1" type="radio" name="douane_disposition" value="ACCESS GRANTED" <?php if($aDouane["douane_disposition"] == "ACCESS GRANTED"){ echo "checked='checked'"; } ?> /> <label for="douane-item-disposition-1">Access granted</label><br />
@@ -93,7 +102,9 @@
                 <br />&nbsp;<br />
 
             </input/>
+            <p><font style="color:purple">*</font>Voor gebruik wanneer het personage van factie is veranderd.</p>
             </form>
+                </br></br>
             <div>
                 <h2>Travel Log</h2>
                 <table width="100%">

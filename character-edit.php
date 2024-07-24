@@ -40,13 +40,13 @@
                     $sImage = "../eos_douane/images/mugs/" . $aDouane["characterID"] . ".jpg";
                 }
                 if (file_exists($sImage)) {
-                    echo '<img class="portrait" src="' . $sImage . '" />';
+                    echo '<img class="portrait" width="200px" src="' . $sImage . '" />';
                 } else { ?>
                     <img src="../eos_douane/images/pending.png" />
                 <?php } ?>
                 <?php
                 if (str_contains($status, "figu")) {
-                    echo 'npc/';
+                    echo '<br>npc/';
                 } 
                 echo $aDouane["characterID"]; ?>.jpg
 	            </div>

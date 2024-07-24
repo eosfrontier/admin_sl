@@ -57,14 +57,14 @@
                 <?php 
                 if (str_contains($status, "figu")) {
                 echo '<strong>Card:</strong><br />
-                <i>NPC Card must be edited through Figurant Manager</i><input name="card_id" type="hidden" value="'.$aDouane["card_id"] .'"  /><br /><br />';
+                <i>NPC Card must be edited through Figurant Manager</i>
+                <input name="card_id" type="hidden" value="'.$aDouane["card_id"] .'"  /><br /><br />';
                 }
                 else {
                 echo '<strong>Card:</strong><br />
                 <input name="card_id" type="text" value="'.$aDouane["card_id"] .'"  /><br /><br />';
                 }
                 ?>
-                <input name="card_id" type="text" value="<?php echo $aDouane["card_id"] ?>"  /><br /><br />
                 <strong>Note:</strong><br />
                 <textarea rows="10" cols="50" name="douane_notes"><?php echo $aDouane["douane_notes"] ?></textarea><br /><br /><br /><br />
                 <strong>Bank</strong><br />

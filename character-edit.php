@@ -48,6 +48,9 @@
                 if (str_contains($status, "figu")) {
                     echo '<br>npc/';
                 } 
+                else {
+                    echo '<br>';
+                }
                 echo $aDouane["characterID"]; ?>.jpg
 	            </div>
                 <strong>Name:</strong><br />

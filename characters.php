@@ -34,9 +34,9 @@
                     $sImage = "../eos_douane/images/mugs/" . $aDouane["characterID"] . ".jpg";
                 }
                 if (file_exists($sImage)) {
-                    echo '<img class="portrait" src="' . $sImage . '" />';
+                    echo '<img class="portrait" width="200px"src="' . $sImage . '" />';
                 } else { ?>
-                    <img src="../eos_douane/images/pending.png" />
+                    <img width = "200px" src="../eos_douane/images/pending.png" />
                 <?php } ?>
                 <?php echo $aDouane["character_name"]; ?>
             </a>

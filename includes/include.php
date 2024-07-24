@@ -10,5 +10,18 @@ ini_set('display_errors', 1);
             include "classes/class.$classname.php";
         }
     );
-
+    if (!function_exists('str_contains')) {
+        /**
+         * Check if substring is contained in string
+         *
+         * @param $haystack
+         * @param $needle
+         *
+         * @return bool
+         */
+        function str_contains($haystack, $needle)
+        {
+            return (strpos($haystack, $needle) !== false);
+        }
+    }
 ?>

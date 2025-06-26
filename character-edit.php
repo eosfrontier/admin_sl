@@ -12,10 +12,10 @@ $aTravellogs = $cDouane->getTravelLog($aDouane["characterID"]);
 <head>
     <meta charset="utf-8">
     <?php
-    if ($aDouane["company"] = "1") {
+    if ($aDouane["company"] === "1") {
         echo '<title>Douane Admin - Company Edit</title>';
     }
-    if ($aDouane["company"] = "0") {
+    if ($aDouane["company"] === "0") {
         echo '<title>Douane Admin - Character Edit</title>';
     } ?>
 
@@ -40,10 +40,10 @@ $aTravellogs = $cDouane->getTravelLog($aDouane["characterID"]);
         <div class="douane-item">
             <form id="douane-update">
                 <?php
-                if ($aDouane["company"] = "1") {
+                if ($aDouane["company"] === "1") {
                     echo '<H1>Company Editor</H1>';
                 }
-                if ($aDouane["company"] = "0") {
+                if ($aDouane["company"] === "0") {
                     echo '<H1>Character Editor</H1>';
                 ?>
                     <div class="douane-image-left">
@@ -71,7 +71,7 @@ $aTravellogs = $cDouane->getTravelLog($aDouane["characterID"]);
                 <strong>Name:</strong><br />
                 <input name="character_name" type="text" value="<?php echo $aDouane["character_name"] ?>" /><br /><br />
                 <?php
-                if ($aDouane["company"] = "0") {
+                if ($aDouane["company"] === "0") {
                 ?>
                     <strong>Rank:</strong><br />
                     <input name="rank" type="text" value="<?php echo $aDouane["rank"] ?>" /><br /><br />
@@ -92,7 +92,7 @@ $aTravellogs = $cDouane->getTravelLog($aDouane["characterID"]);
                 <input type="checkbox" name="bank" id="bank-checkbox" value="1" <?php if ($aDouane["bank"] == 1) { ?>checked="checked" <?php } ?> /><label for="bank-checkbox"> Can be found in banking list</label><br />&nbsp;<br />
                 Sonuren offset <input type="text" name="sonuren_offset" value="<?php echo $aDouane["sonuren_offset"];  ?>" /><br /><br />
                 <?php
-                if ($aDouane["company"] = "0") {
+                if ($aDouane["company"] === "0") {
                 ?>
                     <div class="douane-column">
                         <strong>Factie:</strong><br />
@@ -196,7 +196,7 @@ $aTravellogs = $cDouane->getTravelLog($aDouane["characterID"]);
 
                 </input />
                 <?php
-                if ($aDouane["company"] = "0") {
+                if ($aDouane["company"] === "0") {
                 ?>
                     <p>
                         <font style="color:purple">*</font>Voor gebruik wanneer het personage van factie is veranderd.

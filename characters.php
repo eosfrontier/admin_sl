@@ -26,14 +26,21 @@ $aDouanes = $cDouane->getAll();
             <?php
             $factionFilter = !empty($_GET['faction']) ? $_GET['faction'] : "all";
             $npc = !empty($_GET['npc']) ? $_GET['npc'] : "yes";
+            $active = !empty($_GET['active']) ? $_GET['active'] : "all";
+
             ?>
+            <select name="active" id="active" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=<?php echo $npc; ?>&active=' + this.value; ">
+                <option value="all" <?php if ($active === 'all') echo 'selected' ?>>Show Active & Inactive Players</option>
+                <option value="only" <?php if ($active === 'only') echo 'selected' ?>>Show ONLY Active Players</option>
+                <option value="no" <?php if ($active === 'no') echo 'selected' ?>>Show ONLY Inactive Players</option>
+            </select>
             <table border="2">
                 <thead>
                     <tr>
                         <th>Portrait</th>
                         <th>Name</th>
                         <th>
-                            <select name="faction" id="faction" onchange="location.href = '/admin_sl/characters.php?faction=' + this.value +'&npc=<?php echo $npc; ?>'; ">
+                            <select name="faction" id="faction" onchange="location.href = '/admin_sl/characters.php?npc=<?php echo $npc; ?>&active=<?php echo $active; ?>&faction=' + this.value; ">
                                 <option value="all" <?php if ($factionFilter === 'all') echo 'selected' ?>>All Factions</option>
                                 <option value="aquila" <?php if ($factionFilter === 'aquila') echo 'selected' ?>>Aquila</option>
                                 <option value="dugo" <?php if ($factionFilter === 'dugo') echo 'selected' ?>>Dugo</option>
@@ -43,7 +50,7 @@ $aDouanes = $cDouane->getAll();
                             </select>
                         </th>
                         <th>
-                            <select name="npc" id="npc" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=' + this.value; ">
+                            <select name="npc" id="npc" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&active=<?php echo $active; ?>&npc=' + this.value; ">
                                 <option value="yes" <?php if ($npc === 'yes') echo 'selected' ?>>Show Player & NPCs</option>
                                 <option value="only" <?php if ($npc === 'only') echo 'selected' ?>>Show ONLY NPCs</option>
                                 <option value="no" <?php if ($npc === 'no') echo 'selected' ?>>Show ONLY Players</option>
@@ -63,6 +70,12 @@ $aDouanes = $cDouane->getAll();
                             continue;
                         }
                         if ($npc == "only" && substr($aDouane["status"], 0, 4) != "figu") {
+                            continue;
+                        }
+                        if (!substr($aDouane["status"], 0, 4) === "figu" && $aDouane["sheet_status"] != "active" && $active == "only"){
+                            continue;
+                        }
+                        if (!substr($aDouane["status"], 0, 4) === "figu" && $aDouane["sheet_status"] === "active" && $active == "only"){
                             continue;
                         }
                 ?>

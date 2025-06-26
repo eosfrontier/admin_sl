@@ -44,8 +44,9 @@ $aDouanes = $cDouane->getAll();
                         </th>
                         <th>
                             <select name="npc" id="npc" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=' + this.value; ">
-                                <option value="yes" <?php if ($npc === 'yes') echo 'selected' ?>>Show NPCs</option>
-                                <option value="no" <?php if ($npc === 'no') echo 'selected' ?>>Hide NPCs</option>
+                                <option value="yes" <?php if ($npc === 'yes') echo 'selected' ?>>Show Player & NPCs</option>
+                                <option value="only" <?php if ($npc === 'only') echo 'selected' ?>>Show ONLY NPCs</option>
+                                <option value="no" <?php if ($npc === 'no') echo 'selected' ?>>Show ONLY Players</option>
                             </select>
                         </th>
                     </tr>
@@ -59,6 +60,9 @@ $aDouanes = $cDouane->getAll();
                             }
                         }
                         if ($npc == "no" && substr($aDouane["status"], 0, 4) === "figu") {
+                            continue;
+                        }
+                        if ($npc == "only" && substr($aDouane["status"], 0, 4) != "figu") {
                             continue;
                         }
                 ?>

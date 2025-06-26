@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Douane admin</title>
+    <title>Douane Admin - Character Ediit</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -33,22 +33,41 @@
             <form id="douane-update">
 	            <div class="douane-image-left">
                 <?php
-                $sImage = "../eos_douane/images/mugs/".$aDouane["characterID"].".jpg";
-                if(file_exists($sImage)){
-                ?>
-                <img class="douane-image-left" src="../eos_douane/images/mugs/<?php echo $aDouane["characterID"]; ?>.jpg" alt="<?php echo $aDouane["characterID"]; ?>.jpg" /><br />
-
-                <?php }else{ ?>
-                <img class="douane-image-left" src="http://via.placeholder.com/500x700" />
+                $status = $aDouane["status"];
+                if (str_contains($status, "figu")) {
+                    $sImage = "../eos_douane/images/mugs/npc/" . $aDouane["figu_accountID"] . ".jpg";
+                } else {
+                    $sImage = "../eos_douane/images/mugs/" . $aDouane["characterID"] . ".jpg";
+                }
+                if (file_exists($sImage)) {
+                    echo '<img class="portrait" width="200px" src="' . $sImage . '" />';
+                } else { ?>
+                    <img width="200px" src="../eos_douane/images/pending.png" />
                 <?php } ?>
-                <?php echo $aDouane["characterID"]; ?>.jpg
+                <?php
+                if (str_contains($status, "figu")) {
+                    echo '<br>npc/';
+                } 
+                else {
+                    echo '<br>';
+                }
+                echo $aDouane["characterID"]; ?>.jpg
 	            </div>
                 <strong>Name:</strong><br />
                 <input name="character_name" type="text" value="<?php echo $aDouane["character_name"] ?>" /><br /><br />
                 <strong>Rank:</strong><br />
                 <input name="rank" type="text" value="<?php echo $aDouane["rank"] ?>" /><br /><br />
-                <strong>Card:</strong><br />
-                <input name="card_id" type="text" value="<?php echo $aDouane["card_id"] ?>"  required /><br /><br />
+                <?php 
+                if (str_contains($status, "figu")) {
+                echo '<strong>Card:</strong><br />
+                <i>NPC Card must be edited through Figurant Manager</i>
+                <input name="card_id" type="hidden" value="'.$aDouane["card_id"] .'"  /><br /><br />';
+                }
+                else {
+                echo '<strong>Card:</strong><br />
+                <input name="card_id" type="text" value="'.$aDouane["card_id"] .'"  /><br /><br />';
+                }
+                ?>
                 <strong>Note:</strong><br />
                 <textarea rows="10" cols="50" name="douane_notes"><?php echo $aDouane["douane_notes"] ?></textarea><br /><br /><br /><br />
                 <strong>Bank</strong><br />
@@ -61,6 +80,15 @@
                     <input id="douane-item-faction-ekanesh" type="radio" name="faction" value="ekanesh" <?php if($aDouane["faction"] == "ekanesh"){ echo "checked='checked'"; } ?> /> <label for="douane-item-faction-ekanesh">Ekanesh</label><br />
                     <input id="douane-item-faction-pendzal" type="radio" name="faction" value="pendzal" <?php if($aDouane["faction"] == "pendzal"){ echo "checked='checked'"; } ?> /> <label for="douane-item-faction-pendzal">Pendzal</label><br />
                     <input id="douane-item-faction-sona" type="radio" name="faction" value="sona" <?php if($aDouane["faction"] == "sona"){ echo "checked='checked'"; } ?> /> <label for="douane-item-faction-sona">Sona</label>
+                </div>
+                <div class="douane-column">
+                    <strong>Originele Factie<font style="color:purple">*</font>:</strong><br />
+                    <input id="douane-item-born-faction-aquila" type="radio" name="born_faction" value="" <?php if($aDouane["born_faction"] == ""){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-aquila">Not Set</label><br />
+                    <input id="douane-item-born-faction-aquila" type="radio" name="born_faction" value="aquila" <?php if($aDouane["born_faction"] == "aquila"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-aquila">Aquila</label><br />
+                    <input id="douane-item-born-faction-dugo" type="radio" name="born_faction" value="dugo" <?php if($aDouane["born_faction"] == "dugo"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-dugo">Dugo</label><br />
+                    <input id="douane-item-born-faction-ekanesh" type="radio" name="born_faction" value="ekanesh" <?php if($aDouane["born_faction"] == "ekanesh"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-ekanesh">Ekanesh</label><br />
+                    <input id="douane-item-born-faction-pendzal" type="radio" name="born_faction" value="pendzal" <?php if($aDouane["born_faction"] == "pendzal"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-pendzal">Pendzal</label><br />
+                    <input id="douane-item-born-faction-sona" type="radio" name="born_faction" value="sona" <?php if($aDouane["born_faction"] == "sona"){ echo "checked='checked'"; } ?> /> <label for="douane-item-born-faction-sona">Sona</label>
                 </div>
                 <div class="douane-column">
                     <strong>Disposition:</strong><br />
@@ -93,7 +121,9 @@
                 <br />&nbsp;<br />
 
             </input/>
+            <p><font style="color:purple">*</font>Voor gebruik wanneer het personage van factie is veranderd.</p>
             </form>
+                </br></br>
             <div>
                 <h2>Travel Log</h2>
                 <table width="100%">

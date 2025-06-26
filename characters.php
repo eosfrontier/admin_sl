@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Douane admin</title>
+    <title>Douane Characters Admin - Overview</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -27,12 +27,16 @@
             ?>
             <a href="character-edit.php?id=<?php echo $aDouane["characterID"]; ?>" class="douane-overview-item">
                 <?php
-                $sImage = "../eos_douane/images/mugs/".$aDouane["characterID"].".jpg";
-                if(file_exists($sImage)){
-                ?>
-                <img src="../eos_douane/images/mugs/<?php echo $aDouane["characterID"]; ?>.jpg" />
-                <?php }else{ ?>
-                <img src="http://via.placeholder.com/500x700" />
+                $status = $aDouane["status"];
+                if (str_contains($status, "figu")) {
+                    $sImage = "../eos_douane/images/mugs/npc/" . $aDouane["figu_accountID"] . ".jpg";
+                } else {
+                    $sImage = "../eos_douane/images/mugs/" . $aDouane["characterID"] . ".jpg";
+                }
+                if (file_exists($sImage)) {
+                    echo '<img class="portrait" src="' . $sImage . '" />';
+                } else { ?>
+                    <img  src="../eos_douane/images/pending.png" />
                 <?php } ?>
                 <?php echo $aDouane["character_name"]; ?>
             </a>

@@ -19,7 +19,7 @@
 <body>
     <?php include('includes/header.php'); ?>
     <div class="container">
-        <a href="./companies">Back</a><br />&nbsp;
+        <a href="./companies.php" class="button">Back</a><br />&nbsp;
         <form id="add-company-form">
             Company name:<br />
             <input class="may-empty" type="text" name="character_name" /><br /><br />

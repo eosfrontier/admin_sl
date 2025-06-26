@@ -6,7 +6,7 @@
 body{
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
-    background:#000;
+    background:#262e3e;
     color:#fff;
 }
 
@@ -155,4 +155,13 @@ header{
 
 .transfer-success{
     display:none;
+}
+
+a.button {
+    padding: 1px 6px;
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    color: buttontext;
+    background-color: buttonface;
+    text-decoration: none;
 }

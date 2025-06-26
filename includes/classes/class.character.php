@@ -43,7 +43,7 @@ class character{
         }
         $sonuren_offset = $_POST["sonuren_offset"];
 
-        $sql = "update ecc_characters SET character_name=?, douane_disposition=?, douane_notes=?, threat_assessment=?, faction=?, born_faction=NULLIF(?,''), bastion_clearance=?, rank=?, card_id=NULLIF(?,''), bank=?, sonuren_offset=? WHERE characterID=?";
+        $sql = "update ecc_characters SET character_name=?, douane_disposition=?, douane_notes=?, threat_assessment=?, faction=?, born_faction=NULLIF(?,''), bastion_clearance=?, ecc_characters.rank=?, card_id=NULLIF(?,''), bank=?, sonuren_offset=? WHERE characterID=?";
         $stmt = db::$conn->prepare($sql);
         $result = $stmt->execute([$character_name, $douane_disposition, $douane_notes, $threat_assessment, $faction, $born_faction, $bastion_clearance, $rank, $card_id, $bank, $sonuren_offset, $characterID]);
 

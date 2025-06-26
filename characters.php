@@ -24,20 +24,28 @@ $aDouanes = $cDouane->getAll();
         <div class="douane-overview">
             <H1>Douane Character Editor - Overview</H1>
             <?php
-            $factionFilter = !empty($_GET['faction']) ? $_GET['faction'] : "all";            ?>
+            $factionFilter = !empty($_GET['faction']) ? $_GET['faction'] : "all";
+            $npc = !empty($_GET['npc']) ? $_GET['npc'] : "yes";
+            ?>
             <table border="2">
                 <thead>
                     <tr>
                         <th>Portrait</th>
                         <th>Name</th>
                         <th>
-                            <select name="faction" id="faction" onchange="location.href = '/admin_sl/characters.php?&faction=' + this.value; ">
+                            <select name="faction" id="faction" onchange="location.href = '/admin_sl/characters.php?faction=' + this.value +'&npc=<?php echo $npc; ?>'; ">
                                 <option value="all" <?php if ($factionFilter === 'all') echo 'selected' ?>>All Factions</option>
                                 <option value="aquila" <?php if ($factionFilter === 'aquila') echo 'selected' ?>>Aquila</option>
                                 <option value="dugo" <?php if ($factionFilter === 'dugo') echo 'selected' ?>>Dugo</option>
                                 <option value="ekanesh" <?php if ($factionFilter === 'ekanesh') echo 'selected' ?>>Ekanesh</option>
                                 <option value="pendzal" <?php if ($factionFilter === 'pendzal') echo 'selected' ?>>Pendzal</option>
                                 <option value="sona" <?php if ($factionFilter === 'sona') echo 'selected' ?>>Sona</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select name="npc" id="npc" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=' + this.value; ">
+                                <option value="yes" <?php if ($npc === 'yes') echo 'selected' ?>>Show NPCs</option>
+                                <option value="no" <?php if ($npc === 'no') echo 'selected' ?>>Hide NPCs</option>
                             </select>
                         </th>
                     </tr>
@@ -49,6 +57,9 @@ $aDouanes = $cDouane->getAll();
                             if ($aDouane["faction"] != $factionFilter) {
                                 continue;
                             }
+                        }
+                        if ($npc == "no" && substr($aDouane["status"], 0, 4) === "figu") {
+                            continue;
                         }
                 ?>
                         <tr style="height:100px">
@@ -73,6 +84,13 @@ $aDouanes = $cDouane->getAll();
                             </td>
                             <td>
                                 <h3><?php echo ucfirst($aDouane["faction"]); ?></h3>
+                            </td>
+                            <td>
+                                <h3><?php
+                                    if (substr($aDouane["status"], 0, 4) === "figu") {
+                                        echo "NPC";
+                                    }
+                                    ?></h3>
                             </td>
                         </tr>
                         </a>

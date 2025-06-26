@@ -29,11 +29,11 @@ $aDouanes = $cDouane->getAll();
             $active = !empty($_GET['active']) ? $_GET['active'] : "all";
 
             ?>
-            <select name="active" id="active" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=<?php echo $npc; ?>&active=' + this.value; ">
+            <!-- <select name="active" id="active" onchange="location.href = '/admin_sl/characters.php?faction=<?php echo $factionFilter; ?>&npc=<?php echo $npc; ?>&active=' + this.value; ">
                 <option value="all" <?php if ($active === 'all') echo 'selected' ?>>Show Active & Inactive Players</option>
                 <option value="only" <?php if ($active === 'only') echo 'selected' ?>>Show ONLY Active Players</option>
                 <option value="no" <?php if ($active === 'no') echo 'selected' ?>>Show ONLY Inactive Players</option>
-            </select>
+            </select> -->
             <table border="2">
                 <thead>
                     <tr>
@@ -72,12 +72,13 @@ $aDouanes = $cDouane->getAll();
                         if ($npc == "only" && substr($aDouane["status"], 0, 4) != "figu") {
                             continue;
                         }
-                        if (!substr($aDouane["status"], 0, 4) === "figu" && $aDouane["sheet_status"] != "active" && $active == "only"){
-                            continue;
-                        }
-                        if (!substr($aDouane["status"], 0, 4) === "figu" && $aDouane["sheet_status"] === "active" && $active == "only"){
-                            continue;
-                        }
+
+                        // if (!substr($aDouane["status"], 0, 4) === "figu" && !($aDouane["sheet_status"] === "active")){
+                        //     continue;
+                        // }
+                        // if ($active == "no" && !substr($aDouane["status"], 0, 4) === "figu" && $aDouane["sheet_status"] === "active" ){
+                        //     continue;
+                        // }
                 ?>
                         <tr style="height:100px">
                             <td><a href="character-edit.php?id=<?php echo $aDouane["characterID"]; ?>">
@@ -96,7 +97,9 @@ $aDouanes = $cDouane->getAll();
                             </td>
                             <td>
                                 <h3><a href="character-edit.php?id=<?php echo $aDouane["characterID"]; ?>">
-                                        <?php echo $aDouane["character_name"]; ?>
+                                        <?php echo $aDouane["character_name"];
+                                        // echo '<br>'.$aDouane["sheet_status"];
+                                        ?>
                                     </a></h3>
                             </td>
                             <td>

@@ -2,7 +2,7 @@
 
 class character{
     public function getAll(){
-        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 0 AND sheet_status != 'deleted' ORDER BY character_name ASC");
+        $stmt = db::$conn->prepare("SELECT * FROM ecc_characters WHERE company = 0 AND sheet_status != 'deleted' ORDER BY faction, character_name ASC");
 		$res = $stmt->execute();
 		$res = $stmt->fetchAll();
 
